@@ -1,0 +1,81 @@
+<<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicio de Apoyo al Cliente</title>
+  <style>
+    body {
+      background-color: black;
+      color: green;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+    input[type="text"],
+    input[type="password"] {
+      padding: 10px;
+      margin: 10px;
+      width: 200px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .recovery-btn {
+      background-color: transparent;
+      border: none;
+      color: green;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Apoyo al Cliente</h1>
+    <form id="login-form">
+      <input type="text" id="username" placeholder="Nombre de Usuario" required><br>
+      <input type="password" id="password" placeholder="Contraseña" required><br>
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+    <button class="recovery-btn" onclick="recoverAccount()">¿Necesita ayuda para recuperar su cuenta?</button>
+    <h2>Contacto</h2>
+    <p>Por favor, comunícate con nuestro servicio de apoyo al cliente:</p>
+    <p>Teléfono: 123-456-789</p>
+    <p>Email: soporte@empresa.com</p>
+  </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Evita que el formulario se envíe automáticamente
+      
+      // Aquí puedes agregar la lógica para verificar las credenciales ingresadas
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // Por simplicidad, aquí solo mostramos un mensaje en la consola
+      console.log('Usuario:', username);
+      console.log('Contraseña:', password);
+    });
+
+    function recoverAccount() {
+      const email = prompt('Por favor, introduce tu dirección de correo electrónico para confirmar la recuperación de tu cuenta:');
+      if (email) {
+        // Aquí puedes agregar la lógica para enviar un correo electrónico de confirmación
+        alert('Se ha enviado un correo electrónico a ' + email + ' con instrucciones para recuperar tu cuenta.');
+      } else {
+        alert('Debes ingresar una dirección de correo electrónico para continuar.');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Página de Llamadas</title>
+<style>
+    .gif-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+</head>
+<body>
+
+<!-- Contenido de tu página de llamadas -->
+
+<div class="gif-container">
+    <img src="https://pa1.narvii.com/6365/ee3d1900279fc40de8324be1dac03f1e5f0a06c8_hq.gif" alt="GIF de ejemplo">
+</div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación Visual</title>
+    <style>
+        /* Establece el color de fondo de toda la página en negro */
+        body {
+            background-color: black;
+            color: rgb(94, 255, 0); /* Añadir color blanco al texto para que sea legible en el fondo negro */
+        }
+
+        /* Estilos adicionales */
+        #verificationVideo {
+            /* Puedes agregar estilos específicos para el área de visualización del video si lo necesitas */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Verificación Visual</h1>
+
+<div id="verificationVideo"></div>
+<button onclick="verificarIdentidad()">Verificar Identidad</button>
+<button onclick="iniciarLlamada()">Iniciar Videollamada</button>
+
+<script>
+    async function verificarIdentidad() {
+        const videoElement = document.createElement('video');
+        videoElement.autoplay = true;
+        document.getElementById('verificationVideo').appendChild(videoElement);
+
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            videoElement.srcObject = stream;
+        } catch (error) {
+            console.error('Error al acceder a la cámara:',error);
+        }
+    }
+
+    function iniciarLlamada() {
+        // Aquí agregarías la lógica para iniciar la videollamada una vez que la identidad esté verificada
+        alert('Videollamada iniciada');
+    }
+</script>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videollamadas</title>
+</head>
+<body>
+
+<h1>Videollamadas</h1>
+
+<div id="localVideo"></div>
+<div id="remoteVideo"></div>
+
+<button onclick="startCall()">Iniciar videollamada</button>
+
+<script>
+    async function startCall() {
+        const localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        document.getElementById('localVideo').srcObject = localStream;
+
+        const peerConnection = new RTCPeerConnection();
+
+        localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
+
+        peerConnection.ontrack = function(event) {
+            document.getElementById('remoteVideo').srcObject = event.streams[0];
+        };
+
+        const offer = await peerConnection.createOffer();
+        await peerConnection.setLocalDescription(offer);
+
+        // Aquí normalmente enviarías la oferta al otro participante, pero para simplificar,
+        // no lo haremos en este ejemplo.
+    }
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videollamadas</title>
+</head>
+<body>
+
+<h1>Videollamadas</h1>
+
+<h2>Lista de Contactos</h2>
+<ul id="contactList">
+    <!-- Aquí se mostrarán los contactos agregados -->
+</ul>
+
+<h2>Agregar Contacto</h2>
+<input type="text" id="contactName" placeholder="Nombre del contacto">
+<button onclick="agregarContacto()">Agregar</button>
+
+<h2>Iniciar Videollamada</h2>
+<select id="selectContact">
+    <!-- Aquí se mostrarán los contactos disponibles para llamar -->
+</select>
+<button onclick="iniciarLlamada()">Llamar</button>
+
+<script>
+    let contactos = [];
+
+    function agregarContacto() {
+        const nombre = document.getElementById('contactName').value;
+        if (nombre.trim() !== '') {
+            contactos.push(nombre);
+            actualizarListaContactos();
+            actualizarSelectContactos();
+        }
+    }
+
+    function actualizarListaContactos() {
+        const lista = document.getElementById('contactList');
+        lista.innerHTML = '';
+        contactos.forEach(contacto => {
+            const item = document.createElement('li');
+            item.textContent = contacto;
+            lista.appendChild(item);
+        });
+    }
+
+    function actualizarSelectContactos() {
+        const select = document.getElementById('selectContact');
+        select.innerHTML = '';
+        contactos.forEach(contacto => {
+            const option = document.createElement('option');
+            option.value = contacto;
+            option.textContent = contacto;
+            select.appendChild(option);
+        });
+    }
+
+    function iniciarLlamada() {
+        const contactoSeleccionado = document.getElementById('selectContact').value;
+        if (contactoSeleccionado.trim() !== '') {
+            // Aquí podrías implementar la lógica para iniciar la videollamada con el contacto seleccionado
+            alert('Llamando a ' + contactoSeleccionado);
+        }
+    }
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llamada de Voz</title>
+</head>
+<body>
+
+<button onclick="iniciarLlamadaVoz()">Llamada de Voz</button>
+
+<script>
+    async function iniciarLlamadaVoz() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            // Aquí podrías agregar la lógica para iniciar la llamada de voz utilizando el stream de audio
+            alert('Llamada de voz iniciada');
+        } catch (error) {
+            console.error('Error al acceder al micrófono:', error);
+        }
+    }
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videollamada</title>
+</head>
+<body>
+
+<video id="localVideo" autoplay></video>
+<video id="remoteVideo" autoplay></video>
+<button onclick="iniciarLlamada()">Iniciar Llamada</button>
+
+<script>
+    let localStream;
+    let remoteStream;
+    let peerConnection;
+
+    async function iniciarLlamada() {
+        try {
+            localStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
+            document.getElementById('localVideo').srcObject = localStream;
+
+            peerConnection = new RTCPeerConnection();
+            localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
+
+            peerConnection.ontrack = function(event) {
+                remoteStream = event.streams[0];
+                document.getElementById('remoteVideo').srcObject = remoteStream;
+            };
+
+            const offer = await peerConnection.createOffer();
+            await peerConnection.setLocalDescription(offer);
+
+            // Aquí normalmente enviarías la oferta al otro participante, pero para simplificar,
+            // no lo haremos en este ejemplo.
+
+        } catch (error) {
+            console.error('Error al iniciar la llamada:', error);
+        }
+    }
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenida por voz</title>
+</head>
+<body>
+    <h1>LLAMADAS,SIII!!</h1>
+    <p>espero que disfrute</p>
+
+    <script>
+        // Función para dar la bienvenida por voz
+        function darBienvenida() {
+            // Verificamos si el navegador soporta la API de reconocimiento de voz
+            if ('speechSynthesis' in window) {
+                // Crear un nuevo objeto SpeechSynthesisUtterance
+                var mensaje = new SpeechSynthesisUtterance();
+                // Establecer el texto a ser hablado
+                mensaje.text = '¡en este apartado podras hacer llamadas a tus amigos agregandolos aun estoy trabajando en algunos arreglos';
+                // Hacer que el navegador hable el texto
+                window.speechSynthesis.speak(mensaje);
+            } else {
+                alert('Lo siento, tu navegador no soporta la API de reconocimiento de voz.');
+            }
+        }
+
+        // Llamar a la función cuando se cargue la página
+        window.onload = darBienvenida;
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Chatbot</title>
+  <style>
+    #next-page-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <button id="start-listening">Empezar a escuchar</button>
+  <div id="output"></div>
+  <button id="next-page-btn" onclick="goToNextPage()">Siguiente página</button>
+
+  <script>
+    function goToNextPage() {
+      // Aquí puedes colocar el código para redirigir a la siguiente página
+      // Por ejemplo:
+      window.location.href = 'siguiente_pagina.html';
+    }
+
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+    const synthesis = window.speechSynthesis;
+    
+    recognition.lang = 'es-ES'; // Establece el idioma del reconocimiento de voz
+    
+    recognition.onresult = function(event) {
+      const transcript = event.results[0][0].transcript.toLowerCase();
+      document.getElementById('output').innerHTML = transcript;
+      respond(transcript);
+    };
+    
+    function respond(input) {
+      const output = document.getElementById('output');
+      let response = '';
+      
+      if (input.includes('hola')) {
+        response = 'Hola, ¿cómo estás?';
+      } else {
+        response = 'Lo siento, no entendí eso.';
+      }
+      
+      output.innerHTML = response;
+      speak(response);
+    }
+    
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'es-ES'; // Establece el idioma de la síntesis de voz
+      utterance.voiceURI = 'Google español de España'; // Puede variar según el navegador y la configuración del sistema
+      synthesis.speak(utterance);
+    }
+    
+    document.getElementById('start-listening').addEventListener('click', function() {
+      recognition.start();
+    });
+  </script>
+</body>
+</html>

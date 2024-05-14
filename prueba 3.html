@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>registrate o no entras</title>
+<style>
+/* Estilos para el cuadro de alerta */
+.alert {
+  background-color: #ffcccc; /* Fondo rojo */
+  color: #ff0000; /* Texto rojo */
+  padding: 20px;
+  border-radius: 5px;
+}
+</style>
+<script>
+// Función para mostrar el cuadro de diálogo de registro
+function mostrarRegistro() {
+  var nombre = prompt("Por favor, introduce tu nombre:");
+  var apellidos = prompt("Por favor, introduce tus apellidos:");
+  var correo = prompt("Por favor, introduce tu correo electrónico:");
+  var contraseña = prompt("Por favor, introduce tu contraseña:");
+  var respuesta = prompt("Para verificar que no eres un robot, escribe la palabra 'humano':");
+  
+  if (nombre !== null && apellidos !== null && correo !== null && contraseña !== null && respuesta !== null) {
+    if (respuesta.toLowerCase() === "humano") {
+      alert("¡Gracias por registrarte, " + nombre + " " + apellidos + "! Ahora puedes acceder a la página.");
+    } else {
+      mostrarAlerta("La palabra ingresada no es correcta. Por favor, inténtalo de nuevo.");
+    }
+  } else {
+    mostrarAlerta("Debes ingresar todos los campos y la palabra de verificación para acceder a la página.");
+  }
+}
+
+// Función para mostrar el cuadro de alerta
+function mostrarAlerta(mensaje) {
+  var alerta = document.createElement('div');
+  alerta.className = 'alert';
+  alerta.textContent = mensaje;
+  document.body.appendChild(alerta);
+  
+  // Eliminar el cuadro de alerta después de 5 segundos
+  setTimeout(function() {
+    alerta.remove();
+  }, 5000);
+}
+</script>
+</head>
+<body>
+
+<!-- Botón para mostrar el cuadro de diálogo de registro -->
+<button onclick="mostrarRegistro()">registrate o no entras</button>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar Sesión</title>
+<style>
+/* Estilos para el cuadro de alerta */
+.alert {
+  background-color: #ffcccc; /* Fondo rojo */
+  color: #ff0000; /* Texto rojo */
+  padding: 20px;
+  border-radius: 5px;
+}
+</style>
+<script>
+// Función para mostrar el cuadro de diálogo de inicio de sesión
+function iniciarSesion() {
+  var correo = prompt("Por favor, introduce tu correo electrónico:");
+  var contraseña = prompt("Por favor, introduce tu contraseña:");
+  
+  if (correo !== null && contraseña !== null) {
+    // Aquí verificarías la autenticación con tu backend
+    // Por simplicidad, solo mostraremos un mensaje de éxito
+    alert("¡Inicio de sesión exitoso para el correo: " + correo + "!");
+  } else {
+    mostrarAlerta("Debes ingresar tu correo electrónico y contraseña para iniciar sesión.");
+  }
+}
+
+// Función para mostrar el cuadro de alerta
+function mostrarAlerta(mensaje) {
+  var alerta = document.createElement('div');
+  alerta.className = 'alert';
+  alerta.textContent = mensaje;
+  document.body.appendChild(alerta);
+  
+  // Eliminar el cuadro de alerta después de 5 segundos
+  setTimeout(function() {
+    alerta.remove();
+  }, 5000);
+}
+</script>
+</head>
+<body>
+
+<!-- Botón para mostrar el cuadro de diálogo de inicio de sesión -->
+<button onclick="iniciarSesion()">Iniciar Sesión</button>
+
+</body>
+</html>
+
+
+     <!DOCTYPE html>
+     <html lang="es">
+     <head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>Página con Fondo Negro, GIF y Comentarios</title>
+         <style>
+             body {
+                 background-color: black;
+                 color: rgb(0, 255, 13);
+                 font-family: Arial, sans-serif;
+                 padding: 20px;
+                 margin: 0;
+             }
+             .content {
+                 max-width: 800px;
+                 margin: 0 auto;
+             }
+             h1 {
+                 text-align: center;
+             }
+             p {
+                 line-height: 1.6;
+             }
+             .gif {
+                 display: block;
+                 margin: 20px auto;
+                 max-width: 100%;
+                 height: auto;
+             }
+             .comments {
+                 margin-top: 50px;
+             }
+             .comment {
+                 background-color: #333;
+                 padding: 10px;
+                 margin-bottom: 10px;
+             }
+             .comment p {
+                 margin: 5px 0;
+             }
+             .comment-form {
+                 margin-top: 20px;
+             }
+             .comment-form textarea {
+                 width: 100%;
+                 padding: 10px;
+             }
+             .comment-form button {
+                 padding: 10px 20px;
+                 background-color: #555;
+                 border: none;
+                 color: white;
+                 cursor: pointer;
+             }
+         </style>
+     </head>
+     <body>
+         <div class="content">
+             <h1>ZONA DE COMENTARIOS</h1>
+             <p>Esta es una página de ejemplo con un fondo negro, un GIF y una sección de comentarios.</p>
+             <p>El texto aquí es de color blanco para contrastar con el fondo.</p>
+             <p>¡Espero que te guste!</p>
+             <img class="gif" src="https://th.bing.com/th/id/R.858aa8aeb383dd187eea9495e395b524?rik=cZwuaAL7TbhgXw&riu=http%3a%2f%2fmedia.tumblr.com%2ftumblr_mbup8h0eXc1r8qzc9.gif&ehk=wl4J8sUmBCE7FYusfBrHdwXCRLO7PSIeePoWDuBM7ls%3d&risl=&pid=ImgRaw&r=0" alt="GIF de ejemplo">
+     
+             <div class="comments">
+                 <h2>Comentarios</h2>
+                 <!-- Aquí se mostrarán los comentarios -->
+             </div>
+     
+             <div class="comment-form">
+                 <h3>Deja un comentario</h3>
+                 <textarea id="commentInput" rows="4" placeholder="Escribe tu comentario aquí"></textarea>
+                 <button id="submitButton">Publicar Comentario</button>
+             </div>
+         </div>
+     
+         <script>
+             document.addEventListener("DOMContentLoaded", function() {
+                 const commentInput = document.getElementById("commentInput");
+                 const submitButton = document.getElementById("submitButton");
+                 const commentsSection = document.querySelector(".comments");
+     
+                 submitButton.addEventListener("click", function() {
+                     const commentText = commentInput.value.trim();
+                     if (commentText !== "") {
+                         const commentElement = document.createElement("div");
+                         commentElement.classList.add("comment");
+                         commentElement.innerHTML = `<p>${commentText}</p>`;
+                         commentsSection.appendChild(commentElement);
+                         commentInput.value = "";
+                     } else {
+                         alert("Por favor, escribe un comentario antes de publicar.");
+                     }
+                 });
+             });
+         </script>
+     </body>
+     </html>
+     <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenida por voz</title>
+</head>
+<body>
+    <h1>bienvenido aqui tienes funciones en construccion como chat bot de prueba,solo responde hola por ahora disculpa las molestia</h1>
+    <p>espero que disfrute</p>
+
+    <script>
+        // Función para dar la bienvenida por voz
+        function darBienvenida() {
+            // Verificamos si el navegador soporta la API de reconocimiento de voz
+            if ('speechSynthesis' in window) {
+                // Crear un nuevo objeto SpeechSynthesisUtterance
+                var mensaje = new SpeechSynthesisUtterance();
+                // Establecer el texto a ser hablado
+                mensaje.text = '¡en esta pagina encontraras muchas cosas pero no uses el chat bot, estoy trabajando en arreglarlo! no obstante en la siguiente pagina podras hacer llamadas con amigos hasta que esta opcion este solucionada. Podras agregar a gente para chatear pero en esta version tan temprana de la pagina solo podeis estar dos usuarios conectados entre si, dicha opcion se actualizara en breves disculpe las molestias';
+                // Hacer que el navegador hable el texto
+                window.speechSynthesis.speak(mensaje);
+            } else {
+                alert('Lo siento, tu navegador no soporta la API de reconocimiento de voz.');
+            }
+        }
+
+        // Llamar a la función cuando se cargue la página
+        window.onload = darBienvenida;
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-box"></div>
+        <input type="text" id="user-input" placeholder="Escribe un mensaje...">
+        <button onclick="sendMessage()">Enviar</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById("user-input").value;
+            appendMessage("Tú: " + userInput);
+            getBotResponse(userInput);
+            document.getElementById("user-input").value = "";
+        }
+
+        function appendMessage(message) {
+            var chatBox = document.getElementById("chat-box");
+            var messageElement = document.createElement("div");
+            messageElement.innerText = message;
+            chatBox.appendChild(messageElement);
+        }
+
+        function getBotResponse(userInput) {
+            // Aquí puedes enviar la solicitud al servidor para obtener la respuesta del chatbot
+            // Por simplicidad, aquí simplemente generamos una respuesta aleatoria del chatbot
+            var responses = ["¡Hola!", "Estoy bien, ¿y tú?", "Mi nombre es ChatBot.", "El clima es soleado hoy.", "¡Adiós!"];
+            var botResponse = responses[Math.floor(Math.random() * responses.length)];
+            appendMessage("Bot: " + botResponse);
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Página</title>
+</head>
+<body>
+
+<!-- Contenido de tu página -->
+
+<button onclick="confirmarRedireccion()">Ir a la página de llamadas</button>
+
+<script>
+function confirmarRedireccion() {
+    if (confirm('¿Estás seguro de que quieres ir a la página de llamadas?')) {
+        window.location.href = 'file:///C:/Users/andrei/pagnina%20prueba%202.html'; // Cambia 'pagina-de-llamadas.html' por la URL de tu página de llamadas
+    }
+}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Chatbot</title>
+</head>
+<body>
+  <button id="start-listening">Empezar a escuchar</button>
+  <div id="output"></div>
+
+  <script>
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+    const synthesis = window.speechSynthesis;
+    
+    recognition.lang = 'es-ES'; // Establece el idioma del reconocimiento de voz
+    
+    recognition.onresult = function(event) {
+      const transcript = event.results[0][0].transcript.toLowerCase();
+      document.getElementById('output').innerHTML = transcript;
+      respond(transcript);
+    };
+    
+    function respond(input) {
+      const output = document.getElementById('output');
+      let response = '';
+      
+      if (input.includes('hola')) {
+        response = 'Hola, ¿cómo estás?';
+      } else {
+        response = 'Lo siento, no entendí eso.';
+      }
+      
+      output.innerHTML = response;
+      speak(response);
+    }
+    
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'es-ES'; // Establece el idioma de la síntesis de voz
+      utterance.voiceURI = 'Google español de España'; // Puede variar según el navegador y la configuración del sistema
+      synthesis.speak(utterance);
+    }
+    
+    document.getElementById('start-listening').addEventListener('click', function() {
+      recognition.start();
+    });
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pagina de informacion</title>
+</head>
+<body>
+  <h1>Bienvenido a la Página Principal</h1>
+  
+  <button id="go-to-next-page-btn">pagina.3</button>
+
+  <script>
+    document.getElementById('go-to-next-page-btn').addEventListener('click', function() {
+      window.location.href = 'file:///C:/Users/andrei/siguiente%20avance.html';
+    });
+  </script>
+</body>
+</html>
